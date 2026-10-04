@@ -1,0 +1,28 @@
+name: Swag Labs BDD Tests
+on:
+  push: { branches: [main] }
+  pull_request:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npx cucumber-js --profile ci
+        env:
+          BROWSER: ${{ matrix.browser }}
+          HEADLESS: 'true'
+          TRACE: 'true'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reports-${{ matrix.browser }}
+          path: reports/

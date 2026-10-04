@@ -1,0 +1,8 @@
+{
+  "standard_user":           { "username": "standard_user",           "password": "secret_sauce", "description": "Normal user" },
+  "locked_out_user":         { "username": "locked_out_user",         "password": "secret_sauce", "description": "Locked out user" },
+  "problem_user":            { "username": "problem_user",            "password": "secret_sauce", "description": "Broken images / UI issues" },
+  "performance_glitch_user": { "username": "performance_glitch_user", "password": "secret_sauce", "description": "Slow responses" },
+  "error_user":              { "username": "error_user",              "password": "secret_sauce", "description": "Throws errors in flows" },
+  "visual_user":             { "username": "visual_user",             "password": "secret_sauce", "description": "Visual differences" }
+}
